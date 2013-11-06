@@ -16,6 +16,7 @@ public class CameraTracking2 : MonoBehaviour {
 	//private Transform target;
 	private Transform cam;
 	private Transform dolly;
+	private Transform target;
 	private GameObject character;
 	
 	private float hRot;
@@ -32,7 +33,7 @@ public class CameraTracking2 : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		character = GameObject.Find("/Character");
-		//target = character.transform.FindChild("MeshHead");
+		target = character.transform.Find("Hip/Torso/Neck/MeshHead");
 		//target = GameObject.Find("MeshHead").transform;
 		cam = transform.FindChild("Camera");
 		dolly = this.transform;
@@ -51,8 +52,8 @@ public class CameraTracking2 : MonoBehaviour {
 				Debug.Log("Hit " + hitInfo.transform.gameObject.name);
 				if (hitInfo.transform.gameObject.tag == "Player")
 				{
-					
 					character = hitInfo.transform.gameObject;
+					target = character.transform.Find("Hip/Torso/Neck/MeshHead");
 				}
 			}
 		} 
@@ -88,8 +89,8 @@ public class CameraTracking2 : MonoBehaviour {
 		}
 		
 		// Do camera stuff		
-		dolly.position = character.transform.position + new Vector3(0,1.7f,0);
-		dolly.rotation = character.transform.rotation;	
+		dolly.position = target.position;
+		dolly.rotation = target.rotation;	
 		
 		if (Input.GetMouseButton(1))
 		{
