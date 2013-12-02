@@ -1,0 +1,17 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\SpectatorBehavior.cs">
+    <Files>
+      <File FileName="Assets\CharacterStuff.cs" Line="51" Column="1" />
+      <File FileName="Assets\CameraTracking2.cs" Line="114" Column="2" />
+      <File FileName="Assets\BehaviorCoin.cs" Line="11" Column="1" />
+      <File FileName="Assets\TorHit.cs" Line="18" Column="4" />
+      <File FileName="Assets\MessageRelay.cs" Line="18" Column="23" />
+      <File FileName="Assets\SpectatorBehavior.cs" Line="32" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
