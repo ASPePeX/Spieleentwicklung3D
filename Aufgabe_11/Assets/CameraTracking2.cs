@@ -20,6 +20,7 @@ public class CameraTracking2 : MonoBehaviour {
 	private Transform ball;
 	private GameObject character;
 	public Transform pfCoin;
+	private GameObject lighty;
 	
 	private float hRot;
 	private float vRot;
@@ -34,6 +35,10 @@ public class CameraTracking2 : MonoBehaviour {
 	
 	private float hSliderValue = 5f;
 	private bool gameRunning = false;
+	private float lightStart = 0.0f;
+	private float lightEnd = 0.5f;
+	private float lightInc = 0.003f;
+	private float lightVal;
 	
 	// Use this for initialization
 	void Start () {
@@ -43,11 +48,18 @@ public class CameraTracking2 : MonoBehaviour {
 		cam = transform.FindChild("Camera");
 		dolly = this.transform;
 		ball = GameObject.Find("root/Ball").transform;
+		lighty = GameObject.Find("root/Lighty");
+		lightVal = lightStart;
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		// Do raycast on click and get the new character
+				lighty.light.intensity = lightVal;
+		Debug.Log (lightVal);
+
+		
 		
 		if (Input.GetMouseButtonDown(0))
 		{
@@ -65,6 +77,8 @@ public class CameraTracking2 : MonoBehaviour {
 		} 
 		if (gameRunning)
 		{
+			if (lightVal < lightEnd)
+				lightVal = lightVal + lightInc;
 			// Do the character movement
 			walk = Input.GetAxis("Vertical") * walkspeed;
 			turn = Input.GetAxis("Horizontal") * turnspeed;
