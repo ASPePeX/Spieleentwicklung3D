@@ -12,10 +12,10 @@ public class PlayerMovement : MonoBehaviour
 // ReSharper disable once UnusedMember.Local
     private void Start()
     {
-        _boundaryTop = 4.5f;
-        _boundaryBottom = -4.5f;
+        _boundaryTop = 9f;
+        _boundaryBottom = -9f;
         _boundaryLeft = 0;
-        _boundaryRight = 16;
+        _boundaryRight = 32;
         _speedModifier = new Vector2(0.3f, 0.2f);
     }
 
