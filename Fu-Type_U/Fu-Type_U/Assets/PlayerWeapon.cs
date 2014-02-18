@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Linq;
+using UnityEngine;
 
 // ReSharper disable once CheckNamespace
 public class PlayerWeapon : MonoBehaviour
@@ -6,10 +7,21 @@ public class PlayerWeapon : MonoBehaviour
     private float _gunTimer;
     private int _selectedWeapon;
 
+    private float _gunTimerMachinegun;
+    private float _gunTimerLaser;
+
+    public Transform PlayerShot;
+    private Vector3 _shotSpawnOffset;
+    private Transform _shotParent;
+
     // ReSharper disable once UnusedMember.Local
     private void Start()
     {
-        _selectedWeapon = (int) Weapon.Gun;
+        _selectedWeapon = (int) Weapon.Machinegun;
+        _gunTimerMachinegun = float.Parse(Config.GetConfig("guntimer-machinegun"));
+        _gunTimerLaser = float.Parse(Config.GetConfig("guntimer-laser"));
+        _shotSpawnOffset = new Vector3(2,0,0);
+        _shotParent = GameObject.Find("Projectiles").transform;
     }
 
     // ReSharper disable once UnusedMember.Local
@@ -19,14 +31,9 @@ public class PlayerWeapon : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             _gunTimer = 0;
-            _selectedWeapon = (int) Weapon.Gun;
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            _gunTimer = 0;
             _selectedWeapon = (int) Weapon.Machinegun;
         }
-        if (Input.GetKeyDown(KeyCode.Alpha3))
+        if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             _gunTimer = 0;
             _selectedWeapon = (int) Weapon.Laser;
@@ -36,22 +43,25 @@ public class PlayerWeapon : MonoBehaviour
         {
             switch (_selectedWeapon)
             {
-                case (int) Weapon.Gun:
-                    Debug.Log("Peng Gun" + _gunTimer);
-                    _gunTimer = 0.7f;
-                    break;
-
                 case (int) Weapon.Machinegun:
-                    Debug.Log("Peng MachineGun" + _gunTimer);
-                    _gunTimer = 0.2f;
+                    _gunTimer = _gunTimerMachinegun;
+                    var clone = Instantiate(PlayerShot, transform.position + _shotSpawnOffset, Quaternion.identity) as Transform;
+                    if (clone != null) clone.parent = _shotParent;
                     break;
 
                 case (int) Weapon.Laser:
-                    Debug.Log("Peng Laser" + _gunTimer);
-                    _gunTimer = 2;
+                    Debug.Log("Peng Laser" + _gunTimer + " " + _gunTimerLaser);
+                    _gunTimer = _gunTimerLaser;
+                    RaycastHit[] hits = Physics.RaycastAll(transform.position, Vector3.right, 50);
+                    foreach (RaycastHit hit in hits)
+                    {
+                        Destroy(hit.transform.parent.gameObject);
+                    }
                     break;
             }
         }
+
+        
 
         if (_gunTimer > 0)
             _gunTimer -= Time.deltaTime;
@@ -59,7 +69,6 @@ public class PlayerWeapon : MonoBehaviour
 
     private enum Weapon
     {
-        Gun,
         Machinegun,
         Laser
     }

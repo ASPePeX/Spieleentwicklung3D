@@ -1,23 +1,27 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Reflection;
+using UnityEngine;
 
+// ReSharper disable once CheckNamespace
 public class ShotBehaviour : MonoBehaviour
 {
+    public float _speedDirection;
 
-    private int modifier;
-
-    private enum faction
+    // Use this for initialization
+    private void Start()
     {
-        Player = 1,
-        Enemy = -1
+
     }
 
-	// Use this for initialization
-	void Start () {
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    // Update is called once per frame
+    private void Update()
+    {
+        if (transform.position.x > -5 && transform.position.x < 35)
+        {
+            transform.Translate(_speedDirection * Time.deltaTime, 0, 0);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 }
