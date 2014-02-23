@@ -59,7 +59,7 @@
 						<p>
 							Szenenhierarchie
 						</p></TD>
-						<TD WIDTH="690" VALIGN="TOP">Spieler, Gegner und Landschaft werden ihre eigene Hierarchie haben, sowie die Jeweiligen Objekte sofern sie aus mehreren Teilen bestehen.</TD>
+						<TD WIDTH="690" VALIGN="TOP">Spieler, Gegner und Projektile haben jeweils ihre eigene Hierarchie.</TD>
 					</TR>
 					<TR>
 						<TD WIDTH="28" VALIGN="TOP">3</TD>
@@ -67,7 +67,7 @@
 						<p>
 							Inspector-Variablen
 						</p></TD>
-						<TD WIDTH="690" VALIGN="TOP">Ja ...</TD>
+						<TD WIDTH="690" VALIGN="TOP">Schuss Geschwindigkeit und Richtung, Objektzuweisung mehrerer Scripte</TD>
 					</TR>
 					<TR>
 						<TD WIDTH="28" VALIGN="TOP">4</TD>
@@ -75,7 +75,7 @@
 						<p>
 							Lichteinsatz
 						</p></TD>
-						<TD WIDTH="690" VALIGN="TOP">Die Szene wird beleuchtet.</TD>
+						<TD WIDTH="690" VALIGN="TOP">Grundbeleuchtung + Projektile besitzen eine eigene Lichtquelle.</TD>
 					</TR>
 					<TR>
 						<TD WIDTH="28" VALIGN="TOP">5</TD>
@@ -83,7 +83,7 @@
 						<p>
 							Materialien
 						</p></TD>
-						<TD WIDTH="690" VALIGN="TOP">Die Objekte werden verschiedene Materialien haben.</TD>
+						<TD WIDTH="690" VALIGN="TOP">Unterschideliche Materialien für Spieler und Gegner.</TD>
 					</TR>
 					<TR>
 						<TD WIDTH="28" VALIGN="TOP">6</TD>
@@ -91,7 +91,7 @@
 						<p>
 							Timeline Animation
 						</p></TD>
-						<TD WIDTH="690" VALIGN="TOP">Die Raumschiffe und Projektile werden animiert.</TD>
+						<TD WIDTH="690" VALIGN="TOP">Gegner sind animiert.</TD>
 					</TR>
 					<TR>
 						<TD WIDTH="28" VALIGN="TOP">7</TD>
@@ -99,7 +99,7 @@
 						<p>
 							Prefabs & Instanzen
 						</p></TD>
-						<TD WIDTH="690" VALIGN="TOP">Die Gegner werden aus einem Prefab instanziert.</TD>
+						<TD WIDTH="690" VALIGN="TOP">Alle dynamischen Objekte werden aus Prefabs instanziert (Player, Enemy, etc.).</TD>
 					</TR>
 					<TR>
 						<TD WIDTH="28" VALIGN="TOP">8</TD>
@@ -107,7 +107,7 @@
 						<p>
 							Raycasts
 						</p></TD>
-						<TD WIDTH="690" VALIGN="TOP">Es wird eine Hitscan Waffe geben die per Raycast ihren Hit registriert.</TD>
+						<TD WIDTH="690" VALIGN="TOP">Der Laser (umschalten mit "2") verwendet einen Physics.RaycastAll().</TD>
 					</TR>
 					<TR>
 						<TD WIDTH="28" VALIGN="TOP">9</TD>
@@ -115,7 +115,7 @@
 						<p>
 							Message System
 						</p></TD>
-						<TD WIDTH="690" VALIGN="TOP">Gegner melden ihre Zerstörung als Punktewert zur Highscore Anzeige.</TD>
+						<TD WIDTH="690" VALIGN="TOP">Die Punktezahl wird vom Collision und Waffenscript an die GUI gesendet. Bei Spielende sendet die GUI einen Broadcast der die Gegner zerstört.</TD>
 					</TR>
 					<TR>
 						<TD WIDTH="28" VALIGN="TOP">10</TD>
@@ -123,7 +123,7 @@
 						<p>
 							Sounds
 						</p></TD>
-						<TD WIDTH="690" VALIGN="TOP">Schüsse, Explosionen, maybe Music.</TD>
+						<TD WIDTH="690" VALIGN="TOP">Schüsse, Explosionen, Music.</TD>
 					</TR>
 					<TR>
 						<TD WIDTH="28" VALIGN="TOP">11</TD>
@@ -131,7 +131,7 @@
 						<p>
 							Externe Daten
 						</p></TD>
-						<TD WIDTH="690" VALIGN="TOP">Das Level Layout (Gegnerwellen) als XML.</TD>
+						<TD WIDTH="690" VALIGN="TOP">Der Cooldown der Waffen wird von der Config Klasse aus der config.xml ausgelesen.</TD>
 					</TR>
 					<TR>
 						<TD WIDTH="28" VALIGN="TOP">12</TD>
@@ -147,7 +147,7 @@
 						<p>
 							GUI
 						</p></TD>
-						<TD WIDTH="690" VALIGN="TOP">Start-, Endbildschirm, Lebens-, Highscoreanzeige</TD>
+						<TD WIDTH="690" VALIGN="TOP">Startbildschirm, Waffenanzeige, Score</TD>
 					</TR>
 				</TABLE>
 			</div>

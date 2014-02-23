@@ -9,11 +9,6 @@ public class CameraShake : MonoBehaviour
     private float _shakeIntensity;
 
     // ReSharper disable once UnusedMember.Local
-    private void Start()
-    {
-    }
-
-    // ReSharper disable once UnusedMember.Local
     private void Update()
     {
         if (_shakeIntensity > 0)
@@ -33,7 +28,7 @@ public class CameraShake : MonoBehaviour
     {
         _originPosition = transform.position;
         _originRotation = transform.rotation;
-        _shakeIntensity = 0.2f;
-        _shakeDecay = 0.005f;
+        _shakeIntensity = 0.001f;
+        _shakeDecay = 0.000001f;
     }
 }

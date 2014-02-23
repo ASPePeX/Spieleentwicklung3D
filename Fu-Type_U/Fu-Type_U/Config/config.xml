@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<config>
+	<value name="guntimer-machinegun">0.5</value>
+  <value name="guntimer-laser">2</value>
+  <value name="enemy-timer">5</value>
+</config>

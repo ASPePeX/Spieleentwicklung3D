@@ -1,21 +1,42 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
-using System.IO;
 using System.Text;
 using UnityEngine;
 
 // ReSharper disable once CheckNamespace
 public static class Config
 {
-    private static readonly Dictionary<string, string> ConfigDict;
+    private static Dictionary<string, string> _configDict;
 
+    private static int _curGameState = (int) GameState.NotRunning;
 // ReSharper disable once UnusedMember.Local
-    static Config()
+
+    public static int CurGameState
     {
-        ConfigDict = new Dictionary<string, string>();
-        const string configFile = "Assets/config.xml";
+        get { return _curGameState; }
+        set { _curGameState = value; }
+    }
+
+    public static IEnumerator LoadConfig()
+    {
+        _configDict = new Dictionary<string, string>();
+        string configFile = "Config/config.xml";
         var parser = new XMLParser();
-        XMLNode xml = parser.Parse(File.ReadAllText(configFile));
+
+        if (!Application.isWebPlayer)
+        {
+            configFile = "file://" + Application.dataPath + "/../" + configFile;
+        }
+        else
+        {
+            configFile = Application.dataPath + "/" + configFile;
+        }
+
+        var www = new WWW(configFile);
+        yield return www;
+
+        XMLNode xml = parser.Parse(www.text);
 
         for (int i = 0; i < xml.GetNodeList("config>0>value").Count; i++)
         {
@@ -29,16 +50,22 @@ public static class Config
             stringBuilder2.Append(i);
             stringBuilder2.Append(">_text");
 
-            ConfigDict.Add(xml.GetValue(stringBuilder1.ToString()), xml.GetValue(stringBuilder2.ToString()));
+            _configDict.Add(xml.GetValue(stringBuilder1.ToString()), xml.GetValue(stringBuilder2.ToString()));
         }
     }
 
     public static String GetConfig(String configParam)
     {
-        if (ConfigDict.ContainsKey(configParam))
+        if (_configDict.ContainsKey(configParam))
         {
-            return ConfigDict[configParam];
+            return _configDict[configParam];
         }
         return null;
     }
+}
+
+public enum GameState
+{
+    NotRunning,
+    Running
 }

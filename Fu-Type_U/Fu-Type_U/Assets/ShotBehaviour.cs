@@ -1,23 +1,24 @@
-﻿using System.Reflection;
-using UnityEngine;
+﻿using UnityEngine;
 
 // ReSharper disable once CheckNamespace
 public class ShotBehaviour : MonoBehaviour
 {
-    public float _speedDirection;
+    public float SpeedDirection;
 
-    // Use this for initialization
+
+// ReSharper disable once UnusedMember.Local
     private void Start()
     {
-
+        audio.Play();
     }
 
-    // Update is called once per frame
+
+// ReSharper disable once UnusedMember.Local
     private void Update()
     {
         if (transform.position.x > -5 && transform.position.x < 35)
         {
-            transform.Translate(_speedDirection * Time.deltaTime, 0, 0);
+            transform.Translate(SpeedDirection*Time.deltaTime, 0, 0);
         }
         else
         {
